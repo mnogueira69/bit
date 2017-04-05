@@ -33,12 +33,50 @@
           alert("Ingrese Su Telefono");
           $("#Telefono").focus();
         }
-        else {
-          $("#imgload").show(2000);
-          Materialize.toast('Todo esta Correctamente ingresado ', 4000);
-          $("#miBtn").hide();
-
+        else if ($("#Comentarios").val() == "") {
+          alert("Ingrese Sus Comentarios");
+          $("#Comentarios").focus();
         }
+        else {
+          //Quiere decir que todos los inputs tienen algo en su atributo value
+                    //Por lo, tanto procemos a guardar la solituds
+                        Materialize.toast('Correcto', 6000)
+                         $("#miBtn").hide();
+                         $("#imgload").show(1000);
+                         $("#imgload").hide(5000);
+
+
+
+                        setTimeout(function(){
+                                var Datos=
+                                "?nombres=" + $("#Nombre").val() +
+                                "&telefono=" + $("#Telefono").val() +
+                                "&mensaje=" + $("#Comentarios").val() +  
+                                "&emailto=" + $("#Correo").val() +  
+                                //"&emailcc=luis.silva@bit.institute";
+
+                                $.ajax({
+                                    type: "GET",
+                                    url: "http://ciclo1.bit.institute/api/correos" + Datos,
+                                    dataType: 'application/json; charset=UTF-8',
+                                    success: function (data) {
+                                        //alerta("Datos enviados de forma exitosa.")
+                                    },
+                                    error:function(data1){
+                                        //alert("No hay conexión con el servidor")
+                                    }
+                                });
+                            
+                              $("#imgload").hide(1000);
+                              Materialize.toast('Datos restaurados para una nueva solicitud', 6000)
+                              $("#Apellido").val("");
+                              $("#Correo").val("");
+                              $("#Edad").val("");
+                              $("#Nombres").val("");
+                              //$("input").val("");
+                              $("#Nombres").focus();
+                         }, 5000);
+                  }
       });
     });
   </script>
@@ -67,7 +105,7 @@
         <div class="col12">
           <div class="row">
             <div class="col l12" style="text-align:center">
-              <h3> Formulario BIT </h3>
+              <h5> Formulario de contacto </h5>
 
             </div>
             <hr>
