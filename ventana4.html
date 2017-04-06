@@ -4,7 +4,7 @@
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <meta charset="UTF-8">
-  <title>Fomulario Materialize</title>
+  <title>Fomulario de Contacto</title>
   <!--Import Google Icon Font-->
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
@@ -15,7 +15,7 @@
   <script>
     $(document).ready(function () {
       $("#miBtn").click(function () {
-
+        
         if ($("#Nombres").val() == "" || $("#Nombres").hasClass("invalid") == true) {
           Materialize.toast('Ingrese Su Nombre maximo 10 caracteres', 4000)
 
@@ -40,10 +40,10 @@
         else {
           //Quiere decir que todos los inputs tienen algo en su atributo value
                     //Por lo, tanto procemos a guardar la solituds
-                        Materialize.toast('Correcto', 6000)
-                         $("#miBtn").hide();
+                        Materialize.toast('Correo Enviado', 1000)
+                        $("#miBtn").hide();
                          $("#imgload").show(1000);
-                         $("#imgload").hide(5000);
+                         $("#imgload").hide(2000);
 
 
 
@@ -68,14 +68,16 @@
                                 });
                             
                               $("#imgload").hide(1000);
-                              Materialize.toast('Datos restaurados para una nueva solicitud', 6000)
+                              //Materialize.toast('Datos restaurados para una nueva solicitud', 1000)
                               $("#Apellido").val("");
                               $("#Correo").val("");
-                              $("#Edad").val("");
+                              $("#Comentarios").val("");
                               $("#Nombres").val("");
+                              $("#Telefono").val("");
                               //$("input").val("");
-                              $("#Nombres").focus();
-                         }, 5000);
+                              $('#modal1').modal('close');
+                              $("#miBtn").show();
+                         }, 1000);
                   }
       });
     });
@@ -157,7 +159,7 @@
 
                     </div>
                   </div>
-                  <div class="row" style="text-align:center">
+                  <div class="row" style="text-align: center">
                     <div class="col l12">
                       <button id="miBtn" class="btn waves-effect waves-light red" type="submit" name="action">Enviar
                             <i class="material-icons right">send</i>
