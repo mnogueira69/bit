@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+ <title>Equipos para punto de Venta</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsee.css">
+  <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
+  <link rel="stylesheet" href="owl-carousel/owl.theme.css">
+  <!-- CUSTOM STYLE -->
+  <link rel="stylesheet" href="css/template-style.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,latin-ext' rel='stylesheet'
+    type='text/css'>
+  <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript" src="js/responsee.js"></script>
+  <script type="text/javascript" src="js/template-scripts.js"></script>
+  <!-- CSS  -->
+
+  <!--[if lt IE 9]>
+	      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+      <![endif]-->
+      <!--script para el modal-->
+        <script>
+
+    $(document).ready(function () {
+      $("#miBtn").click(function () {
+        
+        if ($("#Nombres").val() == "" || $("#Nombres").hasClass("invalid") == true) {
+          Materialize.toast('Ingrese Su Nombre maximo 10 caracteres', 4000)
+          $("#Nombres").focus();
+        }
+        else if ($("#Apellido").val() == "" || $("#Apellidos").hasClass("invalid") == true) {
+          Materialize.toast('Ingrese Su Apellido maximo 10 caracteres', 4000)
+          $("#Apellido").focus();
+        }
+        else if ($("#Correo").val() == "" || $("#Correo").hasClass("invalid") == true) {
+          Materialize.toast('Escriba correo Valido', 4000);
+          $("#Correo").focus();
+        }
+        else if ($("#Telefono").val() == "") {
+          Materialize.toast('Escriba telefono', 4000);
+          $("#Telefono").focus();
+        }
+        else if ($("#Comentarios").val() == "") {
+          Materialize.toast('Escriba sus comentarios', 4000);
+          $("#Comentarios").focus();
+        }
+        else {
+          //Quiere decir que todos los inputs tienen algo en su atributo value
+                    //Por lo, tanto procemos a guardar la solituds
+                        Materialize.toast('Correo Enviado', 1000)
+                        $("#miBtn").hide();
+                         $("#imgload").show(1000);
+                         $("#imgload").hide(2000);
+
+
+
+                        setTimeout(function(){
+                          debugger
+                                var Datos=
+                                "http://ciclo1.bit.institute/api/correos?nombres=" + $("#Nombres").val() +
+                                "&telefono=" + $("#Telefono").val() +
+                                "&mensaje=E-mail del usuario: " + $("#Correo").val() + " // " +$("#Comentarios").val() + 
+                                "&emailto=" + $("#Correo").val()+
+                                "&emailcc=mnogueira@usa.com";
+
+                                console.log(Datos);
+
+                                $.ajax({
+                                    type: "GET",
+                                    url:  Datos,
+                                    dataType: 'application/json; charset=UTF-8',
+                                    success: function (data) {
+                                        //alerta("Datos enviados de forma exitosa.")
+                                    },
+                                    error:function(data1){
+                                        //alert("No hay conexión con el servidor")
+                                    }
+                                });
+                            
+                              $("#imgload").hide(1000);
+                              //Materialize.toast('Datos restaurados para una nueva solicitud', 1000)
+                              $("#Apellido").val("");
+                              $("#Correo").val("");
+                              $("#Comentarios").val("");
+                              $("#Nombres").val("");
+                              $("#Telefono").val("");
+                              //$("input").val("");
+                              $('#modal1').modal('close');
+                              $("#miBtn").show();
+                         }, 1000);
+                  }
+      });
+                              $("#micerrar").click(function () {
+                              $("#Nombres").val("");
+                              $("#Correo").val("");
+                              $("#Comentarios").val("");
+                              $("#Nombres").val("");
+                              $("#Telefono").val("");
+        });
+    });
+  </script>
+</head>
+
+<body class="size-1140">
+  <!-- TOP NAV WITH LOGO -->
+  <script>
+    $(document).ready(function () {
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
+      startingTop: '10%', // Starting top style attribute
+      endingTop: '10%', // Ending top style attribute
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        
+        console.log(modal, trigger);
+      },
+      complete: function() {  } // Callback for Modal close
+    });
+    });
+  </script>
+  <!-- Modal Trigger -->
+ <!-- <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>-->
+
+  <!-- Modal Structure -->
+
+  
+
+  <header>
+    <div id="topbar">
+      <div class="line">
+        <div class="s-12 m-6 l-6">
+          <p>CONTACTENOS: <strong>316-480-83-51</strong> | <strong>mnogueira@usa.com</strong></p>
+        </div>
+        <div class="s-12 m-6 l-6">
+          <div class="social right">
+            <a href="http://www.facebook.com/share.php?u=http://ciclo1.bit.institute/FEB17/manolo.nogueira/index.html" target="_blank"> <i class="icon-facebook_circle">  </i></a> 
+            <a href="https://twitter.com/share"  data-url="http://ciclo1.bit.institute/FEB17/manolo.nogueira/index.html" target="_blank"><i class="icon-twitter_circle" ></i></a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></a> 
+            <a><i class="icon-instagram_circle"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <div class="line">
+        <div class="s-12 l-2" style="vertical-align: center">
+          <img src="img/logo4.png" alt="logo">
+        </div>
+        <div class="top-nav s-12 l-10">
+          <p class="nav-text">Custom menu text</p>
+          <ul class="right">
+            <li class="active-item"><a href="index.html">Inicio</a></li>
+            <li><a href="#featur">Productos</a></li>
+            
+            <li><a href="#modal1">Contáctenos</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section>
+    <!-- CAROUSEL -->
+    <div id="carousel">
+      <div id="owl-demo" class="owl-carousel owl-theme">
+        <div class="item">
+          <img src="img/aclasreg.jpg" style="stroke-width: 10%" alt="">
+          <div class="line">
+            <div class="text hide-s">
+              <div class="line">
+                <div class="prev-arrow hide-s hide-m">
+                  <i class="icon-chevron_left"></i>
+                </div>
+                <div class="next-arrow hide-s hide-m">
+                  <i class="icon-chevron_right"></i>
+                </div>
+              </div>
+              <h2>Maquina registradora SAMSUNG 2321</h2>
+              <p>La mas Vendida del mercado, teclado configurable, alta resistencia, pantalla led.</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="img/royal.jpg" alt="">
+          <div class="line">
+            <div class="text hide-s">
+              <div class="line">
+                <div class="prev-arrow hide-s hide-m">
+                  <i class="icon-chevron_left"></i>
+                </div>
+                <div class="next-arrow hide-s hide-m">
+                  <i class="icon-chevron_right"></i>
+                </div>
+              </div>
+              <h2>Registradora Royal 1000ML</h2>
+              <a href="http://www.google.com">
+                <p>Fuerte economica, altamente, configurable </p>
+              </a>
+              <p>Este es otro texto sin enlace </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="img/lewin.jpg" alt="">
+          <div class="line">
+            <div class="text hide-s">
+              <div class="line">
+                <div class="prev-arrow hide-s hide-m">
+                  <i class="icon-chevron_left"></i>
+                </div>
+                <div class="next-arrow hide-s hide-m">
+                  <i class="icon-chevron_right"></i>
+                </div>
+              </div>
+              <h2>Registradora Lewin L10</h2>
+              <p>La mas Poderosa 100 teclas doble funcion, acepta codigo de barras gabeta de dinero, balanzas y conexion wifi con un servidor.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- FIRST BLOCK -->
+    <div id="first-block">
+     
+      <br id="featur">
+        <h1 ><strong>Nuestras lineas de Productos</strong> </h1>
+        <div class="s-12 m-4 l-2 center"></div>
+      
+    </div>
+    <!-- FEATURES -->
+    <div id="features">
+      <div class="line">
+        <div class="margin">
+          <div class="s-12 m-6 l-3 margin-bottom">
+             <a href="www.google.com">
+             <img src="img/register.png" alt="" class="circle responsive-img"> </a>  
+            <h2>Cajas Registradoras</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+              dolore magna aliquam erat volutpat.</p>
+          </div>
+          <div class="s-12 m-6 l-3 margin-bottom">
+            <img src="img/barcode.png" alt="" class="circle responsive-img"> 
+            <h2>Lectores de Codigo</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+              dolore magna aliquam erat volutpat adipiscing.</p>
+          </div>
+          <div class="s-12 m-6 l-3 margin-bottom">
+            <img src="img/drawer.png" alt="" class="circle responsive-img"> 
+            <h2>Gabetas de Dinero</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+              dolore magna erat volutpat.</p>
+          </div>
+          <div class="s-12 m-6 l-3 margin-bottom">
+            <img src="img/weigth.png" alt="" class="circle responsive-img"> 
+            <h2>Balanzas</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+              dolore magna aliquam erat volutpat nonummy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ABOUT US -->
+   
+    
+    <!-- CONTACT -->
+    <div id="modal1" class="modal" style="    max-height: 90%;width: ">
+    <div class="modal-content">
+
+      <div class="row">
+        <div class="col12">
+          <div class="row">
+            <div class="col l12" style="text-align:center">
+              <h1> Formulario de contacto </h1>
+
+            </div>
+            <hr>
+            <div class="container">
+              <div class="row">
+                
+                <div class="col l6">
+                  <div class="input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="Nombres" type="text" class="validate" data-length="10" />
+                    <label for=""> Ingrese su Nombre</label>
+                  </div>
+                </div>
+                <div class="col l6">
+                  <div class="input-field">
+                    <i class="material-icons prefix">perm_identity</i>
+                    <input id="Apellido" type="text" class="validate" data-length="10" />
+                    <label for=""> Ingrese su Apellido</label>
+                  </div>
+
+
+                </div>
+                <div class="row"><br>
+                  <div class="col l6">
+
+                    <div class="input-field">
+                      <i class="material-icons prefix">email</i>
+                      <input id="Correo" type="email" class="validate" />
+                      <label for=""> Ingrese su Correo</label>
+                    </div>
+
+                  </div>
+                  <div class="col l6">
+                    <div class="input-field">
+                      <i class="material-icons prefix">phone</i>
+                      <input id="Telefono" type="text" class="validate" />
+                      <label for=""> Ingrese su Telefono</label>
+
+
+                    </div>
+                  </div>
+                  <div class="row"><br>
+                    <div class="col l6">
+                      <div class="input-field col s12">
+                        <i class="material-icons prefix">chat_bubble</i>
+                        <textarea id="Comentarios" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Comentarios</label>
+                      </div>
+
+
+                    </div>
+
+                     <div class="col l6" style="vertical-align:bottom ">
+
+                        <div class="col l4" style="text-align: center">
+                      <button id="miBtn" class="btn waves-effect waves-light red" type="submit" name="action">Enviar
+                            <i class="material-icons right">send</i>
+                            </button>
+                            
+                      <img id="imgload" src="img/loading2.gif" style="width: 50px; display: none;">
+                      </div>
+                          <div class="col l4" style="text-align: left">
+                              <button id="micerrar" class="modal-action modal-close waves-effect waves-green btn " type="submit" name="action">Cerrar
+                              </button>
+                          </div> 
+
+                    </div>
+                  </div>
+                
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+    <!-- MAP -->
+    
+  <!-- FOOTER -->
+  <footer>
+    <div class="line">
+      <div class="s-12 l-6">
+        <p>Copyright 2015, Vision Design - graphic zoo</p>
+        <p>All images is purchased from Bigstock. Do not use the images in your website.</p>
+      </div>
+      <div class="s-12 l-6">
+        <a class="right" href="http://www.myresponsee.com" title="Responsee - lightweight responsive framework">Design and coding<br> by Responsee Team</a>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="owl-carousel/owl.carousel.js"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+      var theme_slider = $("#owl-demo");
+      $("#owl-demo").owlCarousel({
+        navigation: false,
+        slideSpeed: 300,
+        paginationSpeed: 400,
+        autoPlay: 6000,
+        addClassActive: true,
+        // transitionStyle: "fade",
+        singleItem: true
+      });
+      $("#owl-demo2").owlCarousel({
+        slideSpeed: 300,
+        autoPlay: true,
+        navigation: true,
+        navigationText: ["&#xf007", "&#xf006"],
+        pagination: false,
+        singleItem: true
+      });
+
+      // Custom Navigation Events
+      $(".next-arrow").click(function () {
+        theme_slider.trigger('owl.next');
+      })
+      $(".prev-arrow").click(function () {
+        theme_slider.trigger('owl.prev');
+      })
+    });
+  </script>
+  <!--  Scripts-->
+  
+  
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+</body>
+
+</html>
