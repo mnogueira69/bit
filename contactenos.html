@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/swiper.css">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/swiper.js"></script>
+
+
+    <script>
+        //El ready representa al DOM cargado
+        $(document).ready(function () {
+            $("#miBtn").click(function () {
+                if ($("#Nombres").val() == "" ||  $("#Nombres").hasClass("invalid")== true )  
+                {
+                    Materialize.toast('Verifique su nombre. No puede estar vacio y debe cumplir las restrinciones', 6000)
+
+                    //alert("Verifique su nombre. No puede estar vacio y debe cumplir las restrinciones");
+                    $("#Nombres").focus();
+
+                } else if ($("#Apellido").val() == "" || $("#Apellido").hasClass("invalid")== true ) 
+                {
+
+                   alert("Verifique su apellido. No puede estar vacio y debe cumplir las restrinciones");
+                   $("#Apellido").focus();
+
+                } else if ($("#Correo").val() == "" ||  $("#Correo").hasClass("invalid")== true ) 
+                {
+                    alert("Verifique su correo. No puede estar vacio y debe cumplir las restrinciones");
+                    $("#Correo").focus();
+
+                } else if ($("#Edad").val() == "" || $("#Edad").hasClass("invalid")== true ) 
+                {
+                   alert("Verifique su edad. No puede estar vacio y debe cumplir las restrinciones");
+                    $("#Edad").focus();
+                } else {
+                    //Quiere decir que todos los inputs tienen algo en su atributo value
+                    //Por lo, tanto procemos a guardar la solituds
+                        Materialize.toast('Correcto', 6000)
+                        $("#imgload").show(2000);
+                        setTimeout(function(){
+                            // Conexion al servidor via ajax 
+                          
+
+                        var Datos=
+                        "?nombres=" + $("#Apellido").val() +
+                        "&telefono=" + $("#Edad").val() +
+                        "&mensaje=" + $("#Apellido").val() +  
+                        "&emailto=" + $("#Correo").val() +  
+                        "&emailcc=luis.silva@bit.institute";
+
+
+                        $.ajax({
+                            type: "GET",
+                            url: "http://ciclo1.bit.institute/api/correos" + Datos,
+                            dataType: 'application/json; charset=UTF-8',
+                            success: function (data) {
+                                //alerta("Datos enviados de forma exitosa.")
+                            },
+                            error:function(data1){
+                                //alert("No hay conexión con el servidor")
+                            }
+                        });
+                        AbrirModal("Datos enviados de forma exitosa.")    
+                           
+                          
+                          
+                          
+                          
+                          
+                          
+                             $("#imgload").hide(1000);
+                             Materialize.toast('Datos restaurados para una nueva solicitud', 6000)
+                            // $("#Apellido").val("");
+                            // $("#Correo").val("");
+                            // $("#Edad").val("");
+                            // $("#Nombres").val("");
+                            $("input").val("");
+                            $("#Nombres").focus();
+                         
+                }
+            });
+			
+			//  var swiper = new Swiper('.swiper-container', {
+      //           pagination: '.swiper-pagination',
+      //           effect: 'cube',
+      //           grabCursor: true,
+      //           cube: {
+      //               shadow: true,
+      //               slideShadows: true,
+      //               shadowOffset: 20,
+      //               shadowScale: 0.94
+      //           }
+      //       });
+			
+        });// La finalizacion del ready
+    </script>
+</head>
+
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="index.html">
+              Inicio
+            </a>
+        </li>
+        <li><a href="#SeccionServicios">Ir a servicos</a></li>
+        <li><a href="ejerciciocontactenosJquery.html">Ir a contactenos</a></li>
+        <li><a href="#">Ir a google</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+
+      <div class="row">
+        <div class="col l12" style="text-align:center">
+          <h3> Formulario BIT </h3>
+
+        </div>
+        <hr>
+        <div class="container">
+          <div class="row">
+            <div class="col l6">
+              <div class="input-field">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="Nombres" type="text" placeholder="Ejemplo Manolo, Maria" class="validate" data-length="10" />
+                <label for="Nombres" data-error="Maximo 10 caracteres" data-success="Muy Bien"></label><label for=""> Ingrese su nombre</label>
+              </div>
+            </div>
+            <div class="col l6">
+              <div class="input-field">
+                <i class="material-icons prefix">perm_identity</i>
+                <input id="Apellido" type="text" placeholder="Ejemplo Perez, Fernandez" class="validate" data-length="10" />
+                <label for=""> Ingrese su Apellido</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col l6">
+
+                <div class="input-field">
+                  <i class="material-icons prefix">email</i>
+                  <input id="Correo" type="email" placeholder="Ejemplo pedro.perez@gmail.com" class="validate" />
+                  <label for="Correo"> Ingrese su Correo</label>
+                </div>
+
+              </div>
+              <div class="col l6">
+                <div class="input-field">
+                  <i class="material-icons prefix">thumb_up</i>
+                  <input id="Edad" type="text" placeholder="Ejemplo 20,30,45" class="validate" />
+                  <label for=""> Ingrese su Edad</label>
+
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col l6">
+                  <button id="miBtn" class="btn waves-effect waves-light red" type="submit" name="action">Enviar
+                            <i class="material-icons right">send</i>
+                            </button>
+                  <img id="imgload" src="https://media.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.gif" style="width: 150px; display: none;">
+                </div>
+                <div class="col l6"></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support
+            and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+
+</html>

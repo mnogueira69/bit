@@ -1,0 +1,242 @@
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Contacto</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Frijole" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+
+  <!--  Scripts-->
+  <script src="js/jquery-3.1.1.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script>
+      //Modal
+      $(document).ready(function(){       
+       
+         $(".number").keydown(function (evt) {
+          var c = (evt.which) ? evt.which : event.keyCode
+          
+          /*Validacion de teclado numerico superior*/
+          if (c >=48 && c <=57) {
+            return true;
+          }
+          /*Validacion de teclado numerico derecha*/
+          else if (c >=96 && c <=105){
+            return true;
+          }
+          /*Validacion de teclas cursoras*/
+          else if (c >=37 && c <=40){
+            return true;
+          }
+          /*Validacion de teclas especiales: enter, retroceso y suprimir*/
+          else if (c ==13 || c ==8 || c==46){
+            return true;
+          }else return false;
+        });       
+
+				$(".button-collapse").sideNav();
+
+
+        function AbrirModal(mensaje){
+          $('#CuerpoModal').html("");
+          $('#CuerpoModal').append(" <h4>Hey!</h4> <p>"+mensaje+"</p>");
+          $('#MiModal').openModal();
+        };
+
+        function CerrarModal(){
+          $('#MiModal').closeModal();
+        };
+
+        $('#btnAceptar').click(function(){
+          CerrarModal();
+        });
+
+
+          //Valid version 2.0 
+        $("#btnEnviar").click(function(){
+          if( $(".valid").length==4){
+            AbrirModal("Perfecto...Vamos a enviar los datos al servidor de correos");
+            setTimeout(function(){
+                var Datos =
+                    "?nombres=" + $("#txtNombre").val() +
+                    "&telefono=" + $("#txtTelefono").val() +
+                    "&mensaje=E-mail del usuario:" + $("#txtEmail").val() + " //" +$("#txtMensaje").val() +
+                    "&emailto=idlp227@hotmail.com" +
+                    "&emailcc=luis.silva@bit.institute,cesar.forero@bit.institute";
+                    $.ajax({
+                        type:"GET",
+                        url:"http://ciclo1.bit.institute/api/correos" + Datos,
+                        dataType:"json",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function(data) {
+                            alert(JSON.stringify(data));
+                            JSON.Str
+                        },
+                        error: function(data1) {
+                            alert('No hay conexión con el servidor: '+  JSON.stringify(data1));
+                        }
+                    });
+            }, 1000);
+          }
+          else{
+            AbrirModal("Verifique que todos los campos sean ingresados");
+          }
+        });
+
+      });
+       
+
+      
+  </script>
+  <!-- Style-->
+ <style>
+  footer {
+    padding: 45px 0;
+  }
+  /* label color */
+   .input-field label {
+     color: white;
+   }
+  /* icon prefix focus color */
+   .input-field .prefix {
+     color: green;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: white;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: white;
+   }
+    /* label focus color */
+   .input-field input[type=number]:focus + label {
+     color: white;
+   }
+   /* valid color */
+   .input-field input[type=number].valid {
+     color: white;
+     border-bottom: 1px solid white;
+     box-shadow: green;
+   }
+   /* invalid color */
+   .input-field input[type=number].invalid {
+     color: white;
+     border-bottom: 1px solid white;
+     box-shadow: green;
+   }
+   #txtNombre {
+     color:white;
+   }
+   #txtTelefono{
+     color:white;
+   }
+   #txtEmail {
+     color:white;
+   }
+   #txtMensaje {
+     color:white;
+   }
+   #logo {
+     height:auto;
+     width:auto;
+   }
+   footer.page-footer {
+    margin-top: 20px;
+    padding: 20px;
+   }
+   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 100px;
+    line-height: 100px;
+   } 
+   #btnEnviar {
+     font-size: 15px;
+   }
+ </style>
+
+</head>
+<body bgcolor="black">
+  <nav class="lime darken-4" role="navigation">      
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="index.html" class="brand-logo">
+        <img id="logo" src="img/logo.png">
+      </a>        
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html" style="font-family: 'Oswald', sans-serif">Inicio</a></li>
+        <li><a href="contacto.html" style="font-family: 'Oswald', sans-serif">Cont&aacutectenos</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="index.html" style="font-family: 'Oswald', sans-serif">Inicio</a></li>
+        <li><a href="contacto.html" style="font-family: 'Oswald', sans-serif">Cont&aacutectenos</a></li>
+      </ul>           
+    </div>
+  </nav>  
+  <br><br><br>
+  <h1 class="header center" style="color:white;font-family: 'Frijole', cursive">- ContactO -</h1>
+  <br><br>
+    
+        <div class="container">
+          <div class="row col s12">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">perm_identity</i>
+                <input id="txtNombre" type="text" class="validate" minlength="7" length="30">
+                <label for="nombre" data-error="Error!" data-success="Correcto!">Nombre</label>
+            </div>
+             <div class="input-field col s6">
+                <i class="material-icons prefix">phone</i>
+                <input id="txtTelefono" type="text" class="validate number" minlength="7" length="10">
+                <label for="telefono" data-error="Error!" data-success="Correcto!">Tel&eacutefono</label>
+            </div>
+          </div>        
+          <div class="row col s12 ">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">email</i>
+               <input id="txtEmail" type="text" class="validate" minlength="10" length="30">
+             <label for="email" data-error="Error!" data-success="Correcto!">E-mail</label>
+             </div>             
+            <div class="input-field col s6">
+                <i class="material-icons prefix">message</i>
+                <textarea id="txtMensaje" class="materialize-textarea validate" minlength="2" length="100"></textarea>
+                <label for="textarea1" data-error="Error!" data-success="Correcto!">Mensaje</label>
+            </div> 
+          </div>
+          <div class="row" style="text-align:center"> 
+            <div class="col s12 l12"></div> 
+              <div class="col l4"></div>              
+              <div class="input-field col s12 l4">
+                <a id="btnEnviar" class="waves-effect waves-light btn lime darken-4"><i class="material-icons right">thumb_up</i>Enviar datos</a>
+              </div>
+              <div class="col l4"></div>
+          </div>  
+        </div>
+       
+    <br><br><br>
+      <footer class="page-footer lime darken-4">
+          <div class="container" style="text-align:right">
+          <a href="https://www.facebook.com/WeAreSP"><i class="fa fa-facebook-square fa-2x white-text"></i></a>
+          <a href="https://twitter.com/WeAreStPatricks"><i class="fa fa-twitter-square fa-2x white-text"></i></a>
+          <a href="https://www.instagram.com/wearestpatricks/"><i class="fa fa-instagram fa-2x white-text"></i></a>
+          <a href="https://soundcloud.com/st-patricks"><i class="fa fa-soundcloud fa-2x white-text"></i></a>
+          <a href="https://www.youtube.com/channel/UCSzvsQNBkJqqNMYuLeQKheA"><i class="fa fa-youtube-play fa-2x white-text"></i></a> 
+          <p style="color:white;font-family: 'Oswald', sans-serif">HECHO POR &nbspIV&AacuteN LE&OacuteN</p>
+          <p class="white-text"style="font-family: 'Oswald', sans-serif">&copy 2016 ST. PATRICK'S & BIT/ALL RIGHTS RESERVED</p>
+        </div>    
+  </footer>
+      <!-- Modal Structure -->
+  <div id="MiModal" class="modal">
+    <div class="modal-content" id="CuerpoModal">
+      
+    </div>
+    <div class="modal-footer">
+      <a id="btnAceptar" style="background-color:#827717;color:white" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
+    </div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+ <title>Equipos para punto de Venta</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsee.css">
+  <link rel="stylesheet" href="owl-carousel/owl.carousel.css">
+  <link rel="stylesheet" href="owl-carousel/owl.theme.css">
+  <!-- CUSTOM STYLE -->
+  <link rel="stylesheet" href="css/template-style.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,latin-ext' rel='stylesheet'
+    type='text/css'>
+  <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript" src="js/responsee.js"></script>
+  <script type="text/javascript" src="js/template-scripts.js"></script>
+  <!-- CSS  -->
+
+  <!--[if lt IE 9]>
+	      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+      <![endif]-->
+      <!--script para el modal-->
+        
+  
+</head>
+<script>  
+             
+              
+              </script>
+
+<body class="size-1140">
+<script>
+
+    $(document).ready(function () {
+      $("#miBtn").click(function () {
+        
+        if ($("#Nombres").val() == "" || $("#Nombres").hasClass("invalid") == true) {
+          Materialize.toast('Ingrese Su Nombre maximo 20 caracteres', 4000)
+          $("#Nombres").focus();
+        }
+        else if ($("#Apellido").val() == "" || $("#Apellidos").hasClass("invalid") == true) {
+          Materialize.toast('Ingrese Su Apellido maximo 20 caracteres', 4000)
+          $("#Apellido").focus();
+        }
+        else if ($("#Correo").val() == "" || $("#Correo").hasClass("invalid") == true) {
+          Materialize.toast('Escriba correo Valido', 4000);
+          $("#Correo").focus();
+        }
+        else if ($("#Telefono").val() == "") {
+          Materialize.toast('Escriba telefono', 4000);
+          $("#Telefono").focus();
+        }
+       
+        else {
+
+          //Quiere decir que todos los inputs tienen algo en su atributo value
+                    //Por lo, tanto procemos a guardar la solituds
+                       
+                        
+                          
+                        Materialize.toast('Correo Enviado', 1000);
+                      
+                        $("#miBtn").hide();
+                         $("#imgload").show(1000);
+                         $("#imgload").hide(2000);
+
+
+
+                        setTimeout(function(){
+                                
+                                var Datos=
+                                "http://ciclo1.bit.institute/api/correos?nombres=" + $("#Nombres").val() +
+                                "&telefono=" + $("#Telefono").val() +
+                                "&mensaje=E-mail del usuario: " + $("#Correo").val() + " // " +$("#Comentarios").val() + " // "+ prow +
+                                "&emailto=" + $("#Correo").val()+
+                                "&emailcc=mnogueira@usa.com";
+
+                                console.log(Datos);
+
+                                $.ajax({
+                                    type: "GET",
+                                    url:  Datos,
+                                    dataType: 'application/json; charset=UTF-8',
+                                    success: function (data) {
+                                        //alerta("Datos enviados de forma exitosa.")
+                                    },
+                                    error:function(data1){
+                                        //alert("No hay conexión con el servidor")
+                                    }
+                                });
+                            
+                              $("#imgload").hide(1000);
+                              //Materialize.toast('Datos restaurados para una nueva solicitud', 1000)
+                              $("#Apellido").val("");
+                              $("#Correo").val("");
+                              $("#Comentarios").val("");
+                              $("#Nombres").val("");
+                              $("#Telefono").val("");
+                              //$("input").val("");
+                              $('#modal1').modal('close');
+                              $("#miBtn").show();
+                         }, 1000);
+                  }
+      });
+                              $("#micerrar").click(function () {
+                              $("#Nombres").val("");
+                              $("#Correo").val("");
+                              $("#Comentarios").val("");
+                              $("#Nombres").val("");
+                              $("#Telefono").val("");
+        });
+    });
+  </script>
+
+
+
+  <!-- TOP NAV WITH LOGO -->
+  <script>
+    $(document).ready(function () {
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
+      startingTop: '10%', // Starting top style attribute
+      endingTop: '10%', // Ending top style attribute
+      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        
+        console.log(modal, trigger);
+      },
+      complete: function() {  } // Callback for Modal close
+    });
+    });
+    var prow=null;
+    
+    function myFunction(p) {
+              
+                                            
+                   prow = p;
+                  //Materialize.toast("Se enviaran Información de: "+ prow, 6000)
+                 document.getElementById("titulo").innerHTML = prow;
+                }
+  </script>
+  <!-- Modal Trigger -->
+ <!-- <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>-->
+
+  <!-- Modal Structure -->
+
+  
+
+  <header>
+    <div id="topbar">
+      <div class="line">
+        <div class="s-12 m-6 l-6">
+          <p>CONTACTENOS: <strong>316-480-83-51</strong> | <strong>mnogueira@usa.com</strong></p>
+        </div>
+        <div class="s-12 m-6 l-6">
+          <div class="social right">
+            <a href="http://www.facebook.com/share.php?u=http://ciclo1.bit.institute/FEB17/manolo.nogueira/index.html" target="_blank"> <i class="icon-facebook_circle">  </i></a> 
+            <a href="https://twitter.com/share"  data-url="http://ciclo1.bit.institute/FEB17/manolo.nogueira/index.html" target="_blank"><i class="icon-twitter_circle" ></i></a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></a> 
+            <a><i class="icon-instagram_circle"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <div class="line">
+        <div class="s-12 l-2" style="vertical-align: center">
+          <img src="img/logo4.png" alt="logo">
+        </div>
+        <div class="top-nav s-12 l-10">
+          <p class="nav-text">Menu Mobil</p>
+          <ul class="right">
+            <li class="active-item"><a href="index.html">Inicio</a></li>
+            <li><a href="#featur">Productos</a></li>
+            
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section>
+    <!-- CAROUSEL -->
+   
+    <div id="carousel">
+      <div id="owl-demo" class="owl-carousel owl-theme">
+        <div class="item">
+          <img src="img/honywell1202.jpg" style="stroke-width: 10%" alt="">
+          <div class="line">
+            <div class="text hide-s">
+              <div class="line">
+                <div class="prev-arrow hide-s hide-m">
+                  <i class="icon-chevron_left"></i>
+                </div>
+                <div class="next-arrow hide-s hide-m">
+                  <i class="icon-chevron_right"></i>
+                </div>
+              </div>
+              <h2 id="prodv">Lector de BARCODE-Honeywell Voyager 1202g Wireless </h2>
+              <p> ♦Conectividad Bluetooth<br>
+                  ♦USB, Cuña de teclado, Interfaces RS232<br>
+                  ♦Detección automática de la interfaz<br>
+                  ♦Resistente a la caída a 5.0 Pies<br>
+                  ♦Lee códigos de barras dañados<br>
+                  ♦Diseño Ligero<br>
+                  ♦Funciona con formatos de código de barras mas populares<br>
+                  ♦Escanee hasta de 13 mil códigos de barras  a una distancia de 31 cms<br>
+                  ♦La batería dura más de 12 horas<br>
+              </p>
+              
+              <a href="https://country.honeywellaidc.com/CatalogDocuments/VG1202-ES-QS%20Rev%20A.pdf" target="_blank"><p>Haga click para obtener el Manual de Usuario</p></a>
+              
+              <a href="#modal1" class="tex"><div class="card-panel orange lighten-2">Envienme informacion del producto por correo   <button onclick="myFunction(' BARCODE-Honeywell Voyager 1202g Wireless')">Enviar</button> 
+              
+              </button></div></a>
+              
+        
+              
+              
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="img/ms7120.jpg" alt="">
+          <div class="line">
+            <div class="text hide-s">
+              <div class="line">
+                <div class="prev-arrow hide-s hide-m">
+                  <i class="icon-chevron_left"></i>
+                </div>
+                <div class="next-arrow hide-s hide-m">
+                  <i class="icon-chevron_right"></i>
+                </div>
+              </div>
+              <h2>LECTOR DE CÓDIGOS DE BARRAS HONEYWELL MS7120 ORBIT USB</h2>
+              
+                <p>
+El Lector de código de barras láser omnidireccional fijo, ajustable y semi-manual MS7120 Orbit® es un agresivo lector de códigos de barras omnidireccional. 
+Ligero y robusto, Orbit es pequeño en tamaño pero grande en ventajas. Está diseñado para aquellas aplicaciones donde el espacio es una limitante. 
+Por su diseño único, Orbit permite ser utilizado también como lector manual para aquellos códigos de barras de difícil acceso ó adheridos en paquetes o cajas muy voluminosos.
+
+Gracias a su avanzada tecnología, Orbit optimiza la lectura en primera pasada aumentando al máximo la productividad.
+La cabeza de lectura puede ser girada verticalmente hasta un ángulo de 30º para facilitar la lectura de los códigos en objetos de distintas formas y tamaños.
+ </p> 
+                </p>
+                <a href="https://strikamerki.is/skrar/nidurhal/0002282.pdf" target="_blank"><p>Haga click para obtener el Manual de Usuario</p></a>
+                <a href="#modal1" class="tex"><div class="card-panel orange lighten-2">Envienme informacion del producto por correo   <button onclick="myFunction(' LECTOR DE CÓDIGOS DE BARRAS HONEYWELL MS7120 ORBIT USB')">Enviar</button> 
+              
+              </button></div></a>
+             </div> 
+          </div>
+        </div>
+        <div class="item">
+          <img src="img/LI2208.jpg" alt="">
+          <div class="line">
+            <div class="text hide-s">
+              <div class="line">
+                <div class="prev-arrow hide-s hide-m">
+                  <i class="icon-chevron_left"></i>
+                </div>
+                <div class="next-arrow hide-s hide-m">
+                  <i class="icon-chevron_right"></i>
+                </div>
+              </div>
+              <h2>LECTOR DE CÓDIGO DE BARRAS ZEBRA LI2208</h2>
+              <p>El lector de mano LS2208 de Zebra Technologies le ofrece un alto rendimiento a un módico precio.
+                 Para lugares que varían desde puntos de venta al por menor y almacenes hasta hospitales o colegios,
+                  el modelo LS2208 es un lector resistente y ligero que le ofrece lecturas rápidas y fiables, 
+                  así como un mayor rendimiento y productividad, a la vez que reduce el coste total de propiedad. <br>
+
+                Con unas capacidades de lectura extraordinarias y un amplio rangode trabajo, 
+                el lector LS2208 captura datos de forma rápida y precisa,aumentando la productividad y eficiencia de sus empleados.
+                Graciasa su instalación "plug-and-play" y su diseño intuitivo y de fácilmanejo, que apenas requiere formación,
+                el lector LS2208 es fácil de implementar y utilizar, por lo que podrá ponerse en marcharápidamente. Además, 
+                su diseño ergonómico y equilibrado reduce la fatiga del usuario para maximizar su comodidad
+
+                      </p>
+                            
+                <a href="https://www.zebra.com/us/en/products/spec-sheets-latest/li2208-spec-sheet-es.pdf" target="_blank"><p>Haga click para obtener el Manual de Usuario</p></a>
+              
+              <a href="#modal1" class="tex"><div class="card-panel orange lighten-2">Envienme informacion del producto por correo   <button onclick="myFunction(' LECTOR DE CÓDIGO DE BARRAS ZEBRA LI2208')">Enviar</button> 
+              
+              </button></div></a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FIRST BLOCK -->
+    <div id="first-block">
+     
+      <br id="featur">
+        <h1 ><strong>Nuestras lineas de Productos</strong> </h1>
+        <div class="s-12 m-4 l-2 center"></div>
+      
+    </div>
+   <!-- FEATURES -->
+    <div id="features">
+      <div class="line">
+        <div class="margin">
+          <div class="s-12 m-6 l-3 margin-bottom">
+             <a href="cajas.html">
+             <img src="img/register.png" alt="" class="circle responsive-img"> </a>  
+            <h2>Cajas Registradoras</h2>
+            <p>Cajas registradoras para su punto de Venta, las Mejores Opciones</p>
+          </div>
+          <div class="s-12 m-6 l-3 margin-bottom">
+            <a href="barcode.html">
+            <img src="img/barcode.png" alt="" class="circle responsive-img"> </a> 
+            <h2>Lectores de Codigo</h2>
+            <p>Lectores de Código de Barra de Mano o de pedestal</p>
+          </div>
+          <div class="s-12 m-6 l-3 margin-bottom">
+            <a href="balanzas.html">
+            <img src="img/weigth.png" alt="" class="circle responsive-img"> </a> 
+            <h2>Balanzas Electrónicas</h2>
+            <p>Balanzas para la caja o Balanzas etiquetadoras lo que usted Necesite.</p>
+          </div>
+          <div class="s-12 m-6 l-3 margin-bottom">
+            <a href="mokup.html">
+            <img src="img/balsamiq.png" alt="" class="circle responsive-img"> </a> 
+            <h2>Proyecto</h2>
+            <p>Como realizamos Nuestra Página web y los documentos exigidos por BIT</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CONTACT -->
+    <div id="modal1" class="modal" style="    max-height: 90%;width: ">
+    <div class="modal-content">
+
+      <div class="row">
+        <div class="col12">
+          <div class="row">
+            <div class="col l12" style="text-align:center">
+              <h1 id="titulo"> </h1>
+
+            </div>
+            <hr>
+            <div class="container">
+              <div class="row">
+                
+                <div class="col l6">
+                  <div class="input-field">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="Nombres" type="text" class="validate" data-length="20" />
+                    <label for=""> Ingrese su Nombre</label>
+                  </div>
+                </div>
+                <div class="col l6">
+                  <div class="input-field">
+                    <i class="material-icons prefix">perm_identity</i>
+                    <input id="Apellido" type="text" class="validate" data-length="20" />
+                    <label for=""> Ingrese su Apellido</label>
+                  </div>
+
+
+                </div>
+                <div class="row"><br>
+                  <div class="col l6">
+
+                    <div class="input-field">
+                      <i class="material-icons prefix">email</i>
+                      <input id="Correo" type="email" class="validate" />
+                      <label for=""> Ingrese su Correo</label>
+                    </div>
+
+                  </div>
+                  <div class="col l6">
+                    <div class="input-field">
+                      <i class="material-icons prefix">phone</i>
+                      <input id="Telefono" type="number" class="validate" />
+                      <label for=""> Ingrese su Telefono</label>
+
+
+                    </div>
+                  </div>
+                  <div class="row"><br>
+                    <div class="col l6">
+                      <div class="input-field col s12">
+                        <i class="material-icons prefix">chat_bubble</i>
+                        <textarea id="Comentarios" class="materialize-textarea" ></textarea>
+                        <label for="textarea1">Comentarios</label>
+                      </div>
+
+
+                    </div>
+
+                     <div class="col l6" style="vertical-align:bottom ">
+
+                        <div class="col l4" style="text-align: center">
+                      <button id="miBtn" class="btn waves-effect waves-light red" type="submit" name="action">Enviar
+                            <i class="material-icons right">send</i>
+                            </button>
+                            
+                      <img id="imgload" src="img/loading2.gif" style="width: 50px; display: none;">
+                      </div>
+                          <div class="col l4" style="text-align: left">
+                              <button id="micerrar" class="modal-action modal-close waves-effect waves-green btn " type="submit" name="action">Cerrar
+                              </button>
+                          </div> 
+
+                    </div>
+                  </div>
+                
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+    <!-- MAP -->
+    
+  <!-- FOOTER -->
+  <footer>
+    <div class="line">
+      <div class="s-12 l-6">
+        <p>Copyright 2017, Manolo Nogueira & BIT INSTITUTE</p>
+        <p>Bogotá Colombia.</p>
+      </div>
+      <div class="s-12 l-6">
+        <a class="right" href="http://silva-solutions.com/es" title="Soporte en Desarrollo">Soporte y Coaching por el Ing. Luis Silva<br> SILVA-SOLUTIONS</a>
+      </div>
+    </div>
+  </footer>
+  <script type="text/javascript" src="owl-carousel/owl.carousel.js"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+      var theme_slider = $("#owl-demo");
+      $("#owl-demo").owlCarousel({
+        navigation: false,
+        slideSpeed: 300,
+        paginationSpeed: 400,
+        autoPlay: 15000,
+        addClassActive: true,
+        // transitionStyle: "fade",
+        singleItem: true
+      });
+      $("#owl-demo2").owlCarousel({
+        slideSpeed: 300,
+        autoPlay: true,
+        navigation: true,
+        navigationText: ["&#xf007", "&#xf006"],
+        pagination: false,
+        singleItem: true
+      });
+
+      // Custom Navigation Events
+      $(".next-arrow").click(function () {
+        theme_slider.trigger('owl.next');
+      })
+      $(".prev-arrow").click(function () {
+        theme_slider.trigger('owl.prev');
+      })
+    });
+  </script>
+  <!--  Scripts-->
+  
+  
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+</body>
+
+</html>
