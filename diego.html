@@ -80,25 +80,24 @@
                         setTimeout(function(){
                                 
                                 var Datos=
-                                "http://ciclo1.bit.institute/api/correos?nombres=" + $("#Nombres").val() +
-                                "&telefono=" + $("#Telefono").val() +
-                                "&mensaje=E-mail del usuario: " + $("#Correo").val() + " // " +$("#Comentarios").val() + " // "+ prow +
-                                "&emailto=" + $("#Correo").val()+
-                                "&emailcc="+"luis.silva@bit.institute";
+                            
+                            "?nombres=" + $("#ciudad").val() +
+                            "&telefono=" + $("#pais").val()+
+                            "&mensaje=" + $("#mensaje").val() + "Sitio SlothWeeks" +
+                            "&emailto=" + $("#Correo").val()+
+                            "&emailcc=" + "mnogueira69@gmail.com";
 
-                                console.log(Datos);
-
-                                $.ajax({
-                                    type: "GET",
-                                    url:  Datos,
-                                    dataType: 'application/json; charset=UTF-8',
-                                    success: function (data) {
-                                        //alerta("Datos enviados de forma exitosa.")
-                                    },
-                                    error:function(data1){
-                                        //alert("No hay conexión con el servidor")
-                                    }
-                                });
+                            $.ajax({
+                                type: "GET",
+                                url: "http://ciclo1.bit.institute/api/correos" + Datos,
+                                dataType: 'application/json; charset=UTF-8',
+                                success: function (data) {
+                                    alertify.alert("Data sent successfully.")
+                                },
+                                error:function(data1){
+                                    alertify.alert("No Connection to Server, Please Try in Other Time")
+                                }
+                            });
                             
                               $("#imgload").hide(1000);
                               //Materialize.toast('Datos restaurados para una nueva solicitud', 1000)

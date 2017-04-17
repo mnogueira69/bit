@@ -11,8 +11,8 @@
 	margin:0;	
   }
 body {
-	background:none repeat scroll 0 0 #d3d3d3;
-	font-size:100%;
+	background:none repeat scroll 0 0 #ffffff;
+	font-size:auto;
   font-family:"Open Sans",Arial,sans-serif;
   color:#444;
   }
@@ -294,7 +294,7 @@ ul.chevron .submenu > a:after, ul.chevron .sub-submenu > a:after,ul.chevron .asi
 .size-1140 {max-width:768px;}
 .hide-l {display:block;}
 .hide-s {display:block;}
-.hide-m {display:none;}
+.hide-m {display:block;}
 nav {
   display:block;
   cursor:pointer;
